@@ -1,45 +1,21 @@
-var wins = 0;
-var losses = 0;
-var ties = 0;
+var wins = 0, losses = 0, ties = 0;
+        
+function play(userChoice) {
+        var choices = ['rock', 'paper', 'scissors'];
+        var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-
-var rounds = parseInt(prompt("How many rounds do you want to play?"));
-
-for (let i = 0; i < rounds; i++) {
-    var userChoice = prompt("Enter r, p, or s (for rock, paper, or scissors)");
-
-    var computerChoice = Math.floor(Math.random() * 3);
-    var computerMove;
-    if(computerChoice === 0)
-    {
-        computerMove = "r";
-    }
-    else if (computerChoice === 1)
-    {
-        computerMove = "p";
-    }
-    else
-    {
-        computerMove = "s";
-    }
-
-    if (userChoice === computerMove) 
-    {
-        ties++;
-        alert("It's a tie!");
-    } else if (
-        (userChoice === "r" && computerMove === "s") ||
-        (userChoice === "p" && computerMove === "r") ||
-        (userChoice === "s" && computerMove === "p")
-    ) 
-    {
-        wins++;
-        alert("You won!");
-    } else 
-    {
-        losses++;
-        alert("You lost!");
-    }
+        if (userChoice === computerChoice) {
+            ties++;
+            document.getElementById('ties').innerText = ties;
+        } else if (
+            (userChoice === 'rock' && computerChoice === 'scissors') ||
+            (userChoice === 'paper' && computerChoice === 'rock') ||
+            (userChoice === 'scissors' && computerChoice === 'paper')
+        ) {
+            wins++;
+            document.getElementById('wins').innerText = wins;
+        } else {
+            losses++;
+            document.getElementById('losses').innerText = losses;
+        }
 }
-
-alert("Game Over! You won " + wins + " times, tied " + ties + " times, and lost " + losses + " times.");
