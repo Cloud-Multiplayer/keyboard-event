@@ -1,21 +1,13 @@
-var wins = 0, losses = 0, ties = 0;
-        
-function play(userChoice) {
-        var choices = ['rock', 'paper', 'scissors'];
-        var computerChoice = choices[Math.floor(Math.random() * choices.length)];
-
-        if (userChoice === computerChoice) {
-            ties++;
-            document.getElementById('ties').innerText = ties;
-        } else if (
-            (userChoice === 'rock' && computerChoice === 'scissors') ||
-            (userChoice === 'paper' && computerChoice === 'rock') ||
-            (userChoice === 'scissors' && computerChoice === 'paper')
-        ) {
-            wins++;
-            document.getElementById('wins').innerText = wins;
-        } else {
-            losses++;
-            document.getElementById('losses').innerText = losses;
-        }
+let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+function pickRandomLetter() {
+    return alphabet[Math.floor(Math.random() * alphabet.length)];
 }
+let secretLetter = pickRandomLetter();
+document.body.addEventListener('keydown', function(event) {
+    if (event.key === secretLetter) {
+        let listItem = document.createElement('li');
+        listItem.textContent = 'SECRET KEY PRESSED: ' + secretLetter;
+        document.getElementById('list').appendChild(listItem);
+        secretLetter = pickRandomLetter();
+    }
+});
